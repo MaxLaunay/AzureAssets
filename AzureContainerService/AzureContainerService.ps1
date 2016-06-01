@@ -35,6 +35,10 @@ curl http://localhost/mesos/master/slaves
 # Get current cluster applications
 curl localhost/marathon/v2/apps
 
+# deploy container
+$content = "@" + (gc nginx.json)
+curl -X POST http://localhost/marathon/v2/apps -d $content -H "Content-type: application/json"
+
 function remove{
     Remove-AzureRmResourceGroup -Name $rgname -Force
 }
