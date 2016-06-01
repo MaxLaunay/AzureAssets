@@ -30,14 +30,20 @@ New-AzureRmContainerService -ResourceGroupName $rgname -Name $csName -ContainerS
     # cf. https://azure.microsoft.com/fr-fr/documentation/articles/container-service-connect/
 
 # Get Cluster Agents
-curl http://localhost/mesos/master/slaves
+    # curl http://localhost/mesos/master/slaves
+    Invoke-WebRequest -Uri http://localhost/mesos/master/slaves
 
 # Get current cluster applications
-curl localhost/marathon/v2/apps
+    # curl http://localhost/marathon/v2/apps
+    Invoke-WebRequest -Uri http://localhost/marathon/v2/apps
 
 # deploy container
-$content = "@" + (gc nginx.json)
-curl -X POST http://localhost/marathon/v2/apps -d $content -H "Content-type: application/json"
+    $inFile = 'https://raw.githubusercontent.com/MaxLaunay/AzureAssets/master/AzureContainerService/templates/nginx.json'
+    # curl -X POST http://localhost/marathon/v2/apps -d $content -H "Content-type: application/json"
+    Invoke-WebRequest -Method Post -Uri http://localhost/marathon/v2/apps -ContentType application/json -InFile .\templates\nginx.json
+
+# scale container
+    Invoke-WebRequest -Method Put -Uri http://localhost/marathon/v2/apps/nginx -ContentType application/json -InFile .\templates\scale.json
 
 function remove{
     Remove-AzureRmResourceGroup -Name $rgname -Force
