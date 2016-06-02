@@ -1,5 +1,6 @@
 <?php
 // DB connection info
+
 /*$host = "localhost\sqlexpress";
 $user = "PHP";
 $pwd = "Toto1234$*";
@@ -7,7 +8,7 @@ $db = "registration";*/
 $host = "tcp:ipssi-vsts-demo-sql-server.database.windows.net,1433";
 $user = "maxime";
 $pwd = "Toto1234$*";
-$db = "registration";
+$db = "IPSSI-VSTS-DEMO-SQL";
 try{
     $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );

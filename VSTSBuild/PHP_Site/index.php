@@ -32,7 +32,7 @@
 	$host = "tcp:ipssi-vsts-demo-sql-server.database.windows.net,1433";
 	$user = "maxime";
 	$pwd = "Toto1234$*";
-	$db = "registration";
+	$db = "IPSSI-VSTS-DEMO-SQL";
 	
 	// Connect to database.
 	try {
