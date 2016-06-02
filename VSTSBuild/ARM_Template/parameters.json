@@ -3,22 +3,22 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "components_ipssi_vsts_demo_apps_name": {
-            "value": null
+            "value": "ipssi_vsts_demo_apps"
         },
         "servers_ipssi_vsts_demo_sql_server_name": {
-            "value": null
+            "value": "ipssi_vsts_demo_sql_server"
         },
         "serverfarms_IPSSI_VSTS_DEMO_Service_Plan_name": {
-            "value": null
+            "value": "IPSSI_VSTS_DEMO_Service_Plan"
         },
         "sites_IPSSI_VSTS_DEMO_Apps_name": {
-            "value": null
+            "value": "IPSSI_VSTS_DEMO_Apps"
         },
         "databases_IPSSI_VSTS_DEMO_SQL_name": {
-            "value": null
+            "value": "IPSSI-VSTS-DEMO-SQL"
         },
         "databases_master_name": {
-            "value": null
+            "value": "master"
         },
         "firewallRules_AllowAllWindowsAzureIps_name": {
             "value": null
