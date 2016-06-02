@@ -125,7 +125,7 @@
         },
         {
             "comments": "Generalized from resource: '/subscriptions/33a2a411-ddca-452b-b6a6-92083f32cd07/resourceGroups/IPSSI-VSTS-DEMO/providers/Microsoft.Sql/servers/ipssi-vsts-demo-sql-server/databases/IPSSI-VSTS-DEMO-SQL'.",
-            "type": "Microsoft.Sql/servers/databases",
+            "type": "databases",
             "kind": "v12.0,user",
             "name": "[parameters('databases_IPSSI_VSTS_DEMO_SQL_name')]",
             "apiVersion": "2014-04-01-preview",
