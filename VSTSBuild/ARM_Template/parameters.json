@@ -21,7 +21,7 @@
             "value": "master"
         },
         "firewallRules_AllowAllWindowsAzureIps_name": {
-            "value": null
+            "value": "Firewall"
         },
         "firewallRules_Home_name": {
             "value": "home"
