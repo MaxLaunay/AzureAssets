@@ -1,210 +1,172 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "components_ipssi_vsts_demo_apps_name": {
-            "defaultValue": "ipssi-vsts-demo-apps",
+        "serverName": {
             "type": "String"
         },
-        "servers_ipssi_vsts_demo_sql_server_name": {
-            "defaultValue": "ipssi-vsts-demo-sql-server",
+        "administratorLogin": {
             "type": "String"
         },
-        "serverfarms_IPSSI_VSTS_DEMO_Service_Plan_name": {
-            "defaultValue": "IPSSI-VSTS-DEMO-Service-Plan",
+        "administratorLoginPassword": {
+            "type": "SecureString"
+        },
+        "databaseUsername": {
             "type": "String"
         },
-        "sites_IPSSI_VSTS_DEMO_Apps_name": {
-            "defaultValue": "IPSSI-VSTS-DEMO-Apps",
+        "databasePassword": {
+            "type": "SecureString"
+        },
+        "databaseName": {
             "type": "String"
         },
-        "databases_IPSSI_VSTS_DEMO_SQL_name": {
-            "defaultValue": "ipssi-vsts-demo-sql-server/IPSSI-VSTS-DEMO-SQL",
+        "edition": {
             "type": "String"
         },
-        "databases_master_name": {
-            "defaultValue": "ipssi-vsts-demo-sql-server/master",
+        "collation": {
             "type": "String"
         },
-        "firewallRules_AllowAllWindowsAzureIps_name": {
-            "defaultValue": "ipssi-vsts-demo-sql-server/AllowAllWindowsAzureIps",
+        "maxSizeBytes": {
             "type": "String"
         },
-        "firewallRules_Home_name": {
-            "defaultValue": "ipssi-vsts-demo-sql-server/Home",
+        "requestedServiceObjectiveId": {
+            "type": "String"
+        },
+        "serverLocation": {
+            "type": "String"
+        },
+        "name": {
+            "type": "String"
+        },
+        "hostingPlanName": {
+            "type": "String"
+        },
+        "hostingEnvironment": {
+            "type": "String"
+        },
+        "location": {
+            "type": "String"
+        },
+        "sku": {
+            "type": "String"
+        },
+        "workerSize": {
+            "type": "String"
+        },
+        "serverFarmResourceGroup": {
+            "type": "String"
+        },
+        "subscriptionId": {
             "type": "String"
         }
     },
-    "variables": {},
     "resources": [
         {
-            "comments": "Generalized from resource: '/subscriptions/33a2a411-ddca-452b-b6a6-92083f32cd07/resourceGroups/IPSSI-VSTS-DEMO/providers/microsoft.insights/components/ipssi-vsts-demo-apps'.",
+            "type": "Microsoft.Web/sites",
+            "name": "[parameters('name')]",
+            "apiVersion": "2015-08-01",
+            "location": "[parameters('location')]",
+            "tags": {
+                "[concat('hidden-related:', '/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]": "empty"
+            },
+            "properties": {
+                "siteConfig": {
+                    "connectionStrings": [
+                        {
+                            "name": "defaultConnection",
+                            "ConnectionString": "[concat('Data Source=tcp:' , reference('Microsoft.SQL/servers/ipssi-vsts-demo').fullyQualifiedDomainName , ',1433;Initial Catalog=IPSSI-VSTS-DEMO;User Id=maxime@',reference('Microsoft.SQL/servers/ipssi-vsts-demo').fullyQualifiedDomainName,';Password=',parameters('administratorLoginPassword'),';')]",
+                            "type": "SQLAzure"
+                        }
+                    ]
+                },
+                "name": "[parameters('name')]",
+                "serverFarmId": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+                "hostingEnvironment": "[parameters('hostingEnvironment')]"
+            },
+            "resources": [
+                {
+                    "type": "providers/links",
+                    "name": "Microsoft.Resources/sites",
+                    "apiVersion": "2015-01-01",
+                    "properties": {
+                        "targetId": "[resourceId('microsoft.insights/components', parameters('name'))]"
+                    },
+                    "dependsOn": [
+                        "[resourceId('microsoft.web/sites', parameters('name'))]"
+                    ]
+                }
+            ],
+            "dependsOn": [
+                "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/serverfarms",
+            "name": "[parameters('hostingPlanName')]",
+            "apiVersion": "2015-02-01",
+            "location": "[parameters('location')]",
+            "properties": {
+                "name": "[parameters('hostingPlanName')]",
+                "sku": "[parameters('sku')]",
+                "workerSizeId": "[parameters('workerSize')]",
+                "isLinux": false,
+                "hostingEnvironment": "[parameters('hostingEnvironment')]"
+            }
+        },
+        {
             "type": "microsoft.insights/components",
-            "kind": "web",
-            "name": "[parameters('components_ipssi_vsts_demo_apps_name')]",
+            "name": "[parameters('name')]",
             "apiVersion": "2014-04-01",
             "location": "Central US",
             "tags": {
-                "hidden-link:/subscriptions/33a2a411-ddca-452b-b6a6-92083f32cd07/resourceGroups/IPSSI-VSTS-DEMO/providers/Microsoft.Web/sites/IPSSI-VSTS-DEMO-Apps": "Resource"
+                "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('name'))]": "Resource"
             },
             "properties": {
-                "ApplicationId": "[parameters('components_ipssi_vsts_demo_apps_name')]"
+                "ApplicationId": "[parameters('name')]"
             },
-            "dependsOn": []
+            "dependsOn": [
+                "[concat('Microsoft.Web/sites/', parameters('name'))]"
+            ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/33a2a411-ddca-452b-b6a6-92083f32cd07/resourceGroups/IPSSI-VSTS-DEMO/providers/Microsoft.Sql/servers/ipssi-vsts-demo-sql-server'.",
             "type": "Microsoft.Sql/servers",
-            "kind": "v12.0",
-            "name": "[parameters('servers_ipssi_vsts_demo_sql_server_name')]",
+            "name": "[parameters('serverName')]",
             "apiVersion": "2014-04-01-preview",
-            "location": "West Europe",
+            "location": "[parameters('serverLocation')]",
             "properties": {
-                "administratorLogin": "maxime",
-                "administratorLoginPassword": null,
+                "administratorLogin": "[parameters('administratorLogin')]",
+                "administratorLoginPassword": "[parameters('administratorLoginPassword')]",
                 "version": "12.0"
             },
-            "dependsOn": []
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/33a2a411-ddca-452b-b6a6-92083f32cd07/resourceGroups/IPSSI-VSTS-DEMO/providers/Microsoft.Web/serverfarms/IPSSI-VSTS-DEMO-Service-Plan'.",
-            "type": "Microsoft.Web/serverfarms",
-            "sku": {
-                "name": "S1",
-                "tier": "Standard",
-                "size": "S1",
-                "family": "S",
-                "capacity": 1
-            },
-            "name": "[parameters('serverfarms_IPSSI_VSTS_DEMO_Service_Plan_name')]",
-            "apiVersion": "2015-08-01",
-            "location": "West Europe",
-            "properties": {
-                "name": "[parameters('serverfarms_IPSSI_VSTS_DEMO_Service_Plan_name')]",
-                "numberOfWorkers": 1
-            },
-            "dependsOn": []
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/33a2a411-ddca-452b-b6a6-92083f32cd07/resourceGroups/IPSSI-VSTS-DEMO/providers/Microsoft.Web/sites/IPSSI-VSTS-DEMO-Apps'.",
-            "type": "Microsoft.Web/sites",
-            "name": "[parameters('sites_IPSSI_VSTS_DEMO_Apps_name')]",
-            "apiVersion": "2015-08-01",
-            "location": "West Europe",
-            "tags": {
-                "hidden-related:/subscriptions/33a2a411-ddca-452b-b6a6-92083f32cd07/resourcegroups/IPSSI-VSTS-DEMO/providers/Microsoft.Web/serverfarms/IPSSI-VSTS-DEMO-Service-Plan": "empty"
-            },
-            "properties": {
-                "name": "[parameters('sites_IPSSI_VSTS_DEMO_Apps_name')]",
-                "hostNames": [
-                    "ipssi-vsts-demo-apps.azurewebsites.net"
-                ],
-                "enabledHostNames": [
-                    "ipssi-vsts-demo-apps.azurewebsites.net",
-                    "ipssi-vsts-demo-apps.scm.azurewebsites.net"
-                ],
-                "hostNameSslStates": [
-                    {
-                        "name": "[concat(parameters('sites_IPSSI_VSTS_DEMO_Apps_name'),'ipssi-vsts-demo-apps.azurewebsites.net')]",
-                        "sslState": 0,
-                        "thumbprint": null,
-                        "ipBasedSslState": 0
+            "resources": [
+                {
+                    "type": "databases",
+                    "name": "[parameters('databaseName')]",
+                    "apiVersion": "2014-04-01-preview",
+                    "location": "[parameters('serverLocation')]",
+                    "properties": {
+                        "edition": "[parameters('edition')]",
+                        "collation": "[parameters('collation')]",
+                        "maxSizeBytes": "[parameters('maxSizeBytes')]",
+                        "requestedServiceObjectiveId": "[parameters('requestedServiceObjectiveId')]"
                     },
-                    {
-                        "name": "[concat(parameters('sites_IPSSI_VSTS_DEMO_Apps_name'),'ipssi-vsts-demo-apps.scm.azurewebsites.net')]",
-                        "sslState": 0,
-                        "thumbprint": null,
-                        "ipBasedSslState": 0
-                    }
-                ],
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_IPSSI_VSTS_DEMO_Service_Plan_name'))]"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_IPSSI_VSTS_DEMO_Service_Plan_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/33a2a411-ddca-452b-b6a6-92083f32cd07/resourceGroups/IPSSI-VSTS-DEMO/providers/Microsoft.Sql/servers/ipssi-vsts-demo-sql-server/databases/IPSSI-VSTS-DEMO-SQL'.",
-            "type": "databases",
-            "kind": "v12.0,user",
-            "name": "[parameters('databases_IPSSI_VSTS_DEMO_SQL_name')]",
-            "apiVersion": "2014-04-01-preview",
-            "location": "West Europe",
-            "properties": {
-                "databaseId": "4c37ed2e-fc70-4df2-99a8-18f989564eb0",
-                "edition": "Standard",
-                "status": "Online",
-                "serviceLevelObjective": "S0",
-                "collation": "SQL_Latin1_General_CP1_CI_AS",
-                "maxSizeBytes": "268435456000",
-                "creationDate": "2016-06-02T16:03:50.85Z",
-                "currentServiceObjectiveId": "f1173c43-91bd-4aaa-973c-54e79e15235b",
-                "requestedServiceObjectiveId": "f1173c43-91bd-4aaa-973c-54e79e15235b",
-                "requestedServiceObjectiveName": null,
-                "defaultSecondaryLocation": "North Europe",
-                "earliestRestoreDate": "2016-06-02T16:14:26.9Z",
-                "elasticPoolName": null,
-                "containmentState": 2
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_ipssi_vsts_demo_sql_server_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/33a2a411-ddca-452b-b6a6-92083f32cd07/resourceGroups/IPSSI-VSTS-DEMO/providers/Microsoft.Sql/servers/ipssi-vsts-demo-sql-server/databases/master'.",
-            "type": "Microsoft.Sql/servers/databases",
-            "kind": "v12.0,system",
-            "name": "[parameters('databases_master_name')]",
-            "apiVersion": "2014-04-01-preview",
-            "location": "West Europe",
-            "properties": {
-                "databaseId": "3e1e6edb-3341-435f-bff4-d0eb5c3b97ed",
-                "edition": "System",
-                "status": "Online",
-                "serviceLevelObjective": "System1",
-                "collation": "SQL_Latin1_General_CP1_CI_AS",
-                "maxSizeBytes": "5368709120",
-                "creationDate": "2016-06-02T16:03:19.37Z",
-                "currentServiceObjectiveId": "c99ac918-dbea-463f-a475-16ec020fdc12",
-                "requestedServiceObjectiveId": "c99ac918-dbea-463f-a475-16ec020fdc12",
-                "requestedServiceObjectiveName": null,
-                "defaultSecondaryLocation": "North Europe",
-                "earliestRestoreDate": null,
-                "elasticPoolName": null,
-                "containmentState": 2
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_ipssi_vsts_demo_sql_server_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/33a2a411-ddca-452b-b6a6-92083f32cd07/resourceGroups/IPSSI-VSTS-DEMO/providers/Microsoft.Sql/servers/ipssi-vsts-demo-sql-server/firewallRules/AllowAllWindowsAzureIps'.",
-            "type": "Microsoft.Sql/servers/firewallRules",
-            "kind": "v12.0",
-            "name": "[parameters('firewallRules_AllowAllWindowsAzureIps_name')]",
-            "apiVersion": "2014-04-01-preview",
-            "location": "West Europe",
-            "properties": {
-                "startIpAddress": "0.0.0.0",
-                "endIpAddress": "0.0.0.0"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_ipssi_vsts_demo_sql_server_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/33a2a411-ddca-452b-b6a6-92083f32cd07/resourceGroups/IPSSI-VSTS-DEMO/providers/Microsoft.Sql/servers/ipssi-vsts-demo-sql-server/firewallRules/Home'.",
-            "type": "Microsoft.Sql/servers/firewallRules",
-            "kind": "v12.0",
-            "name": "[parameters('firewallRules_Home_name')]",
-            "apiVersion": "2014-04-01-preview",
-            "location": "West Europe",
-            "properties": {
-                "startIpAddress": "31.33.101.85",
-                "endIpAddress": "31.33.101.85"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_ipssi_vsts_demo_sql_server_name'))]"
+                    "dependsOn": [
+                        "[concat('Microsoft.Sql/servers/', parameters('serverName'))]"
+                    ]
+                },
+                {
+                    "type": "firewallrules",
+                    "name": "AllowAllWindowsAzureIps",
+                    "apiVersion": "2014-04-01-preview",
+                    "location": "[parameters('serverLocation')]",
+                    "properties": {
+                        "endIpAddress": "0.0.0.0",
+                        "startIpAddress": "0.0.0.0"
+                    },
+                    "dependsOn": [
+                        "[concat('Microsoft.Sql/servers/', parameters('serverName'))]"
+                    ]
+                }
             ]
         }
     ]
