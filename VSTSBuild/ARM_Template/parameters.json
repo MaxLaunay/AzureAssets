@@ -7,6 +7,18 @@
     },
     "administratorLoginPassword": {		
       "value": "Toto1234$*"		
-    }		
+    },
+    "databaseName": {		
+      "value": "IPSSI-VSTS-DEMO-SQL-DB"		
+    },
+    "hostingPlanName": {		
+      "value": "IPSSI-VSTS-DEMO-HOSTING-PLAN"		
+    },
+    "webSiteName": {		
+      "value": "IPSSI-VSTS-DEMO-WEB-SITE"		
+    },
+    "sqlserverName": {		
+      "value": "ipssi-vsts-demo-sql"		
+    }	
   }
 }
