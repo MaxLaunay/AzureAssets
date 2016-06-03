@@ -2,29 +2,62 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "components_ipssi_vsts_demo_apps_name": {
-            "value": "ipssi_vsts_demo_apps"
+        "serverName": {
+            "value": "ipssi-vsts-demo"
         },
-        "servers_ipssi_vsts_demo_sql_server_name": {
-            "value": "ipssi_vsts_demo_sql_server"
+        "administratorLogin": {
+            "value": "maxime"
         },
-        "serverfarms_IPSSI_VSTS_DEMO_Service_Plan_name": {
-            "value": "IPSSI_VSTS_DEMO_Service_Plan"
+        "administratorLoginPassword": {
+            "value": null
         },
-        "sites_IPSSI_VSTS_DEMO_Apps_name": {
-            "value": "IPSSI_VSTS_DEMO_Apps"
+        "databaseUsername": {
+            "value": "maxime"
         },
-        "databases_IPSSI_VSTS_DEMO_SQL_name": {
-            "value": "IPSSI-VSTS-DEMO-SQL"
+        "databasePassword": {
+            "value": null
         },
-        "databases_master_name": {
-            "value": "master"
+        "databaseName": {
+            "value": "IPSSI-VSTS-DEMO"
         },
-        "firewallRules_AllowAllWindowsAzureIps_name": {
-            "value": "Firewall"
+        "edition": {
+            "value": "Standard"
         },
-        "firewallRules_Home_name": {
-            "value": "home"
+        "collation": {
+            "value": "SQL_Latin1_General_CP1_CI_AS"
+        },
+        "maxSizeBytes": {
+            "value": "268435456000"
+        },
+        "requestedServiceObjectiveId": {
+            "value": "f1173c43-91bd-4aaa-973c-54e79e15235b"
+        },
+        "serverLocation": {
+            "value": "westeurope"
+        },
+        "name": {
+            "value": "IPSSI-VSTS-DEMO"
+        },
+        "hostingPlanName": {
+            "value": "ServicePlane90bc74a-b872"
+        },
+        "hostingEnvironment": {
+            "value": ""
+        },
+        "location": {
+            "value": "South Central US"
+        },
+        "sku": {
+            "value": "Standard"
+        },
+        "workerSize": {
+            "value": "0"
+        },
+        "serverFarmResourceGroup": {
+            "value": "IPSSI-VSTS-DEMO"
+        },
+        "subscriptionId": {
+            "value": "33a2a411-ddca-452b-b6a6-92083f32cd07"
         }
     }
 }
