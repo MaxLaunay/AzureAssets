@@ -29,6 +29,7 @@ Avec ces didacticiels, vous allez apprendre à utiliser le Portail Azure pour :
 • Step 3, action 2, il ne faut pas cliquer sur **Add database**, mais sur Add To Pool
 
 ![Add Databse to a pool](./media/AzureSQLDatabase_1.png)
+
 3. [Gérer et surveiller une base de données élastique avec le portail Azure](https://azure.microsoft.com/en-us/documentation/articles/sql-database-elastic-pool-manage-portal/#elastic-database-monitoring)
 
 ### Powershell
