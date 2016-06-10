@@ -1,29 +1,18 @@
 # TP - PaaS - Azure Web Sites
 
+Avec ces didacticiels, vous allez apprendre à utiliser le Portail Azure et Powershell pour :
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-Avec ces didacticiels, vous allez apprendre à utiliser le Portail Azure pour :
-•créer un serveur logique de base de données SQL pour héberger des bases de données SQL ;
-•créer une base de données SQL sans données avec des exemples de données ou avec des données d’une sauvegarde de base de données SQL ;
-•créer une règle de pare-feu au niveau du serveur pour une seule adresse IP ou une plage d’adresses IP.
 
 ## Prérequis
 
-• Disposer d'un abonnement Azure
-• Etre connecter au [portail azure](https://portal.azure.com/)
-• Disposer des cmdlets [Powershell pour Azure](https://azure.microsoft.com/en-us/documentation/articles/powershell-install-configure/)
+* Disposer d'un abonnement Azure
+* Etre connecter au [portail azure](https://portal.azure.com/)
+* Disposer des cmdlets [Powershell pour Azure](https://azure.microsoft.com/en-us/documentation/articles/powershell-install-configure/)
+* Avoir effectuer le TP [Azure SQL Database](https://github.com/MaximeLaunay/AzureAssets/blob/dev/Cours/AzureSQLDatabase/readme.md)
 
 ## Paramètres générales à utiliser
 • Si aucune valeur n'est précisée, utiliser les valeurs par défaut proposées par le portail ou dans les scripts Powershell
