@@ -8,4 +8,4 @@
 
 ## Web Site + SQL avec Azure Resource Manager
 * aide [ici](https://azure.microsoft.com/en-us/documentation/articles/resource-group-template-deploy/)
-* template et fichier de configuration [ici]()
+* template et fichier de configuration [ici](https://github.com/MaximeLaunay/AzureAssets/tree/master/Cours/ARM)
