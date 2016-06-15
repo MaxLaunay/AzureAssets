@@ -5,10 +5,10 @@
 $user = "PHP";
 $pwd = "Toto1234$*";
 $db = "registration";*/
-$host = "tcp:ipssi-vsts-demo-sql-server.database.windows.net,1433";
+$host = "tcp:ipssi-vsts-demo-sql.database.windows.net,1433";
 $user = "maxime";
 $pwd = "Toto1234$*";
-$db = "IPSSI-VSTS-DEMO-SQL";
+$db = "IPSSI-VSTS-DEMO-SQL-DB";
 try{
     $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );

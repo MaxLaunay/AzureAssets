@@ -1,30 +1,24 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "components_ipssi_vsts_demo_apps_name": {
-            "value": "ipssi_vsts_demo_apps"
-        },
-        "servers_ipssi_vsts_demo_sql_server_name": {
-            "value": "ipssi_vsts_demo_sql_server"
-        },
-        "serverfarms_IPSSI_VSTS_DEMO_Service_Plan_name": {
-            "value": "IPSSI_VSTS_DEMO_Service_Plan"
-        },
-        "sites_IPSSI_VSTS_DEMO_Apps_name": {
-            "value": "IPSSI_VSTS_DEMO_Apps"
-        },
-        "databases_IPSSI_VSTS_DEMO_SQL_name": {
-            "value": "IPSSI-VSTS-DEMO-SQL"
-        },
-        "databases_master_name": {
-            "value": "master"
-        },
-        "firewallRules_AllowAllWindowsAzureIps_name": {
-            "value": null
-        },
-        "firewallRules_Home_name": {
-            "value": null
-        }
-    }
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "administratorLogin": {
+      "value": "maxime"
+    },
+    "administratorLoginPassword": {		
+      "value": "Toto1234$*"		
+    },
+    "databaseName": {		
+      "value": "IPSSI-VSTS-DEMO-SQL-DB"		
+    },
+    "hostingPlanName": {		
+      "value": "IPSSI-VSTS-DEMO-HOSTING-PLAN"		
+    },
+    "webSiteName": {		
+      "value": "IPSSI-VSTS-DEMO-WEB-SITE"		
+    },
+    "sqlserverName": {		
+      "value": "ipssi-vsts-demo-sql"		
+    }	
+  }
 }

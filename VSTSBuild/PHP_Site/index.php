@@ -29,10 +29,10 @@
 	$user = "PHP";
 	$pwd = "Toto1234$*";
 	$db = "registration";*/
-	$host = "tcp:ipssi-vsts-demo-sql-server.database.windows.net,1433";
+	$host = "tcp:ipssi-vsts-demo-sql.database.windows.net,1433";
 	$user = "maxime";
 	$pwd = "Toto1234$*";
-	$db = "IPSSI-VSTS-DEMO-SQL";
+	$db = "IPSSI-VSTS-DEMO-SQL-DB";
 	
 	// Connect to database.
 	try {
