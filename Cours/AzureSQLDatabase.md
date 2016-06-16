@@ -26,3 +26,9 @@ Avec ces didacticiels, vous allez apprendre à utiliser le Portail Azure et Powe
   * pricing tier : Standard Pool
   * Step 3, action 2, il ne faut pas cliquer sur **Add database**, mais sur **Add To Pool**
 3. Gérer et surveiller une base de données élastique avec le portail Azure disponible [ici](https://azure.microsoft.com/en-us/documentation/articles/sql-database-elastic-pool-manage-portal/#elastic-database-monitoring)
+
+## Azure SQL Database
+* Install Azure Powershell (cf. [ici](https://azure.microsoft.com/en-us/documentation/articles/powershell-install-configure/))
+* Créer un serveur SQL avec Powershell disponible [ ici](https://azure.microsoft.com/en-us/documentation/articles/sql-database-get-started-powershell/)
+* Créer un Pool Elastic avec Powershell disponible [ ici](https://azure.microsoft.com/en-us/documentation/articles/sql-database-elastic-pool-create-powershell/)
+* Gérer et surveiller un Pool Elastic avec Powershelldisponible [ ici](https://azure.microsoft.com/en-us/documentation/articles/sql-database-elastic-pool-manage-powershell/)
