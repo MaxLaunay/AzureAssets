@@ -11,7 +11,7 @@
 )
 
 #Initialize
-# $SubscriptionName = 'Osiatis CIS - Azure 1';
+# $SubscriptionName = 'Osiatis CIS - Formation Azure';
 $ErrorActionPreference = "Stop"
 $VerbosePreference = "SilentlyContinue"
 $userName = $env:USERNAME
@@ -32,6 +32,7 @@ if ([String]::IsNullOrEmpty($isAzureModulePresent) -eq $true)
 Import-Module -Name AzureRM.Profile
 Write-Output "Provide your credentials to access Azure subscription $subscriptionName" -Verbose
 Login-AzureRmAccount -SubscriptionName $subscriptionName
+$azureSubscription = Get-AzureRmSubscription
 $connectionName = $azureSubscription.SubscriptionName
 $tenantId = $azureSubscription.TenantId
 $id = $azureSubscription.SubscriptionId
@@ -40,6 +41,7 @@ $id = $azureSubscription.SubscriptionId
 #Create a new AD Application
 Write-Output "Creating a new Application in AAD (App URI - $identifierUri)" -Verbose
 $azureAdApplication = New-AzureRmADApplication -DisplayName $displayName -HomePage $homePage -IdentifierUris $identifierUri -Password $password -Verbose
+$azureAdApplication = Get-AzureRmADApplication -DisplayNameStartWith VSO.maxim.f1478260-5b
 $appId = $azureAdApplication.ApplicationId
 Write-Output "Azure AAD Application creation completed successfully (Application Id: $appId)" -Verbose
 
