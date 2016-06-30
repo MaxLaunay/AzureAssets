@@ -48,4 +48,7 @@ New-AzureRmContainerService -ResourceGroupName $rgname -Name $csName -ContainerS
 
 function remove{
     Remove-AzureRmResourceGroup -Name $rgname -Force
+    Remove-AzureRmResourceGroup -Name "TEST-MAX" -Force
 }
+
+Remove-AzureRmResourceGroup -Name "TEST-MAX" -Force

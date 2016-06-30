@@ -11,9 +11,14 @@ $location = 'northeurope';
 New-AzureRMResourceGroup -Name $rgname -Location $location -Force;
 
 # Deploy Azure Container Service via ARM
-$templateURI = 
-$parametersURI = 
-New-AzureRmResourceGroupDeployment
+$templateURI = "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-acs-dcos/azuredeploy.json"
+$parametersURI = "https://raw.githubusercontent.com/MaximeLaunay/AzureAssets/dev/AzureContainerService/templates/azuredeploy.parameters.json"
+New-AzureRmResourceGroupDeployment -ResourceGroupName $rgname -TemplateParameterUri $parametersURI `
+    -TemplateUri $templateURI -DeploymentDebugLogLevel All -Name ACSDeployment
+
+
+
+
 
 # Connect to Azure Container
     # cf. https://azure.microsoft.com/fr-fr/documentation/articles/container-service-connect/

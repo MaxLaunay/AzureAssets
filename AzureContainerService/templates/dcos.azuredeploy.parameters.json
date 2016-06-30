@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "dnsNamePrefix": {
-      "value": "ipssi-acs"
+      "value": "ipssi-acs-dcos"
     },
     "agentCount": {
       "value": 1
@@ -18,7 +18,7 @@
       "value": "DCOS"
     },
     "masterCount": {
-      "value": 3
+      "value": 1
     },
     "sshRSAPublicKey": {
       "value": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAg26jKpgOHjJHtK/MBQ+j0QsuTGW9S4o2jfT1//uv4PzsqL7y+IUjmL/7gazFiTmmf/CsJb0semLuh8+mA7YPgujOCVUM5N1JuxCCsl+jzijY+KHvIxb3YwBTt8aFD0nRTnMqFiPznwV/D17Dkas/h8S1nY2KqFxcCsBPZ6Kt0eGl/iEoevJB47I0YwnPGEMQY3KD0X0evsAC25MBO21Jyanud+1BAQMZoaTV+eD9u2IoQdnbsSVKLGAepvplU3uWsV9qIXEfkPL/4RkrR5dUytS1PcLumFJUBks+DwCxEhN6INH2lhe43RnGN8u2WSV67kwzHrMJDW6+nRktpggp2w== ipssi-Mesosphere-test"

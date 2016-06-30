@@ -1,0 +1,75 @@
+# Install on Ubuntu 16.04
+
+# Install Node-JS and npm (https://doc.ubuntu-fr.org/nodejs)
+	$ sudo apt-get update && sudo apt-get install nodejs npm
+	$ sudo apt-get install nodejs-legacy
+
+# Install Docker (https://docs.docker.com/engine/installation/linux/ubuntulinux/)
+	# install the linux-image-extra package for your kernel version:
+		$ sudo apt-get update
+	# Install the recommended package
+		$ sudo apt-get install linux-image-extra-$(uname -r)
+	# Install Docker
+		$ sudo apt-get install docker-engine
+
+# Install Azure-Cli (https://azure.microsoft.com/fr-fr/documentation/articles/xplat-cli-install/)
+	$ sudo npm install azure-cli -g
+
+# Container Service Deployment (https://azure.microsoft.com/en-us/documentation/articles/container-service-deployment/)
+	# create a SSH Key
+		$ ssh-keygen
+		
+	# Add azure account
+		$ azure login -u user@domain.com
+		$ azure login -u ipssi-user-1@osiatispracticeazure.onmicrosoft.com
+
+	# Configure the Azure CLI tools to use Azure Resource Manager.
+		$ azure config mode arm
+	
+	# Create Azure Resource Group
+		$ rgname='MLA-IPSSI-TEST-RG'
+		$ location='northeurope'
+		$ azure group create $rgname $location
+	
+	# Deploy Azure Container Service via ARM
+		$ templateURI='https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-acs-dcos/azuredeploy.json'
+	# Set parameters file with our own ssh public key
+		$ parametersFile='./azuredeploy.parameters.json'
+		$ azure group deployment create $rgname 'ACSDeployment' --template-uri $templateURI -e $parametersFile
+	
+	# Create a DC-OS Tunnel
+	# WARNING : id_rsa must be in /root/.ssh folder (ssh tunnel should be initiate only by root user)
+		$ sudo ssh -L 2375:localhost:2375 -f -N maxime.launay@ipssi-acsmgmt.northeurope.cloudapp.azure.com -p 2200
+	
+	# set your DOCKER_HOST environment variable as follows
+		$ export DOCKER_HOST=:2375
+	
+	# Run First container
+		# create a new container in the Docker Swarm, use the docker run command. This example creates a container from the yeasy/simple-web image:
+			$ docker run -d -p 80:80 yeasy/simple-web
+		# go to url (DNS name of Public IP Adress of Load Balancer Agent)
+			http://ipssi-acsagents.northeurope.cloudapp.azure.com
+	
+# Installing the DC/OS CLI (https://docs.mesosphere.com/1.7/usage/cli/install/#linux)
+	# install python
+	sudo apt-get install python-pip python-dev build-essential
+	sudo pip install --upgrade pip 
+	
+	# Install virtualenv: 
+	sudo pip install virtualenv
+	
+	# Create a new directory named dcos and change your working directory to ii
+	mkdir dcos && cd dcos
+	
+	# Download the DC/OS CLI install script to your new directory
+	curl -O https://downloads.dcos.io/dcos-cli/install.sh
+	
+	
+	
+	
+	
+	# Run the DC/OS CLI install script, where <installdir> is the DC/OS installation directory and <hosturl> is the hostname of your master node prefixed with http://: 
+	bash install.sh <install_dir> http://<hosturl>
+	ex : bash install.sh . http://dcos-ab-1234.us-west-2.elb.amazonaws.com
+	
+	# Follow the on-screen DC/OS CLI instructions. You can ignore any Python “Insecure Platform” warnings. You can now use the CLI.
