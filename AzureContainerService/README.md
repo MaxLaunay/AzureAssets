@@ -10,6 +10,7 @@ This documentation was created with an Ubuntu 16.04
 
 ## Configure our desktop environment
 To use an ACS with Docker Swarm, you need this requirements:
+
 1. Install a default Ubuntu 16.04 : You could be find an Ubuntu distribution [here](http://www.ubuntu.com/download/desktop)
 2. Install Node-JS and npm
 3. Install Docker
