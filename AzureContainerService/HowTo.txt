@@ -11,6 +11,13 @@
 		$ sudo apt-get install linux-image-extra-$(uname -r)
 	# Install Docker
 		$ sudo apt-get install docker-engine
+	# Install Docker Compose
+		$ sudo apt install docker-compose
+	# get last version of docker compose
+		$ curl -L https://github.com/docker/compose/releases/download/1.8.0-rc1/docker-compose-`uname -s`-`uname -m` > ./docker-compose
+		$ chmod +x ./docker-compose
+		$ sudo cp -f docker-compose /usr/bin/docker-compose
+		$ docker-compose --version
 
 # Install Azure-Cli (https://azure.microsoft.com/fr-fr/documentation/articles/xplat-cli-install/)
 	$ sudo npm install azure-cli -g
@@ -27,7 +34,7 @@
 		$ azure config mode arm
 	
 	# Create Azure Resource Group
-		$ rgname='MLA-IPSSI-TEST-RG'
+		$ rgname='MLA-IPSSI-SWARM-RG'
 		$ location='northeurope'
 		$ azure group create $rgname $location
 	
@@ -49,6 +56,20 @@
 			$ docker run -d -p 80:80 yeasy/simple-web
 		# go to url (DNS name of Public IP Adress of Load Balancer Agent)
 			http://ipssi-acsagents.northeurope.cloudapp.azure.com
+			
+	# docker-compose
+	https://github.com/eea/eea.docker.jenkins
+	https://engineering.riotgames.com/news/jenkins-docker-proxies-and-compose
+	https://github.com/Azure/azure-quickstart-templates/blob/master/101-acs-swarm/docs/SwarmWalkthrough.md
+	
+	# DCOS
+	https://github.com/Azure/azure-quickstart-templates/blob/master/101-acs-dcos/docs/DCOSWalkthrough.md
+			
+			
+			
+			
+			
+			
 	
 # Installing the DC/OS CLI (https://docs.mesosphere.com/1.7/usage/cli/install/#linux)
 	# install python
@@ -73,3 +94,52 @@
 	ex : bash install.sh . http://dcos-ab-1234.us-west-2.elb.amazonaws.com
 	
 	# Follow the on-screen DC/OS CLI instructions. You can ignore any Python “Insecure Platform” warnings. You can now use the CLI.
+	
+	
+	
+	
+	Create new azure storage account
+azure storage account create ipssiacsstoacct
+
+azure storage account keys list ipssiacsstoacct
+
+export AZURE_STORAGE_ACCOUNT=ipssiacsstoacct
+export AZURE_STORAGE_ACCESS_KEY=nrMDlAEbEkS0vYIiVDY88620fg9dxpzSYwl8akeHltwhwHbQkZqEnRQ4vWGxVR69x8wv0B4rRXtBGu2RxipCag==
+
+azure storage container create dockervolume
+
+
+get ubuntu images
+docker search ubuntu | grep -i offi
+good image : torusware/speedus-ubuntu 
+
+DockerFile
+FROM ubuntu:14.04
+MAINTAINER mlaunay
+
+docker build -t mlaunay/azure-files .
+docker run --rm -it mlaunay/azure-files
+docker run --privileged --rm -it mlaunay/azure-files bash
+docker run -d --privileged mlaunay/azure-files:1.1
+
+docker rm azureShare
+docker rmi mlaunay/azure-files:1.1
+docker build -t mlaunay/azure-files:1.1 .
+docker run -v /data1 -d --privileged --name azureShare mlaunay/azure-files:1.1
+docker run --rm -it --volumes-from azureShare --name test mlaunay/azure-files:1.1 bash
+
+
+docker run -v /data1 -v /data2 -d --privileged --name azureShare mlaunay/azure-files:1.1
+
+docker run -v /data1 -v /data2 -d -v /tmp/data3:/data3 --privileged --name azureShare mlaunay/azure-files:1.1
+
+mount -t cifs //ipssiacsstoacct.file.core.windows.net/dockervolume /data -o vers=3.0,username=ipssiacsstoacct,password=nrMDlAEbEkS0vYIiVDY88620fg9dxpzSYwl8akeHltwhwHbQkZqEnRQ4vWGxVR69x8wv0B4rRXtBGu2RxipCag==,dir_mode=0777,file_mode=0777
+
+net use z: \\ipssiacsstoacct.file.core.windows.net\dockervolume /u:ipssiacsstoacct nrMDlAEbEkS0vYIiVDY88620fg9dxpzSYwl8akeHltwhwHbQkZqEnRQ4vWGxVR69x8wv0B4rRXtBGu2RxipCag==
+
+ipssiacsstoacct.file.core.windows.net/dockervolume
+ipssiacsstoacct.file.core.windows.net\dockervolume /u:ipssiacsstoacct [storage account access key]
+
+docker run -d mlaunay/azure-files
+
+

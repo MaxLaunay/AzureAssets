@@ -1,7 +1,8 @@
 Param(
     [Parameter(Mandatory=$true)][String]$SubscriptionName,
     [Parameter(Mandatory=$true)][String]$rgname,
-    [Parameter(Mandatory=$true)][String]$location
+    [Parameter(Mandatory=$true)][String]$location,
+    [Parameter(Mandatory=$true)][String]$sshKey
 )
 
 # Connect to Azure with your account
@@ -15,7 +16,7 @@ New-AzureRMResourceGroup -Name $rgname -Location $location -Force;
 
 # Deploy Azure Container Service via ARM
 $templateURI = "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-acs-dcos/azuredeploy.json"
-$parametersURI = "https://raw.githubusercontent.com/MaximeLaunay/AzureAssets/dev/AzureContainerService/templates/dcos.azuredeploy.parameters.json"
+$parametersURI = "https://raw.githubusercontent.com/MaximeLaunay/AzureAssets/dev/AzureContainerService/templates/swarm.azuredeploy.parameters.json"
 New-AzureRmResourceGroupDeployment -ResourceGroupName $rgname -TemplateParameterUri $parametersURI `
     -TemplateUri $templateURI -DeploymentDebugLogLevel All -Name ACSDeployment `
     -sshRSAPublicKey $sshKey
