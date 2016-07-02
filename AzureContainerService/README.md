@@ -21,6 +21,6 @@ Another goal is that the Sofware Factory deploy applications in ACS
 * https://engineering.riotgames.com/news/jenkins-docker-proxies-and-compose
 
 ## Other stuff
-* [Powershell script to create a ACS cluster - Docker Swarm with ARM](PSScripts/)
+* [Powershell script to create a ACS cluster - Docker Swarm with ARM](PSScripts/SWARMAzureContainerServiceViaARM.ps1)
 * [Powershell script to create a ACS cluster - DCOS with ARM](PSScripts/DCOSAzureContainerServiceViaARM.ps1)
-* [Powershell script to create a ACS cluster with cmdlets](PSScripts/SWARMAzureContainerServiceViaARM.ps1)
+* [Powershell script to create a ACS cluster with cmdlets](PSScripts/Set-AzureContainerService.ps1)

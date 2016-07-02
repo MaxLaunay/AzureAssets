@@ -1,7 +1,7 @@
 # Tutorial 2 - setup a sonarqube instance
 ## Overview
 
-This tutorial is a part of [Azure Container Service and Docker Swam Tutorials](~/README.md)
+This tutorial is a part of [Azure Container Service and Docker Swam Tutorials](README.md)
 
 Sonarqube is an open source quality management platform. It is a very good solution to analyzing and measuring the technical quality of source code.
 

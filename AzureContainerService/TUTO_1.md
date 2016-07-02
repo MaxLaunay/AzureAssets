@@ -2,7 +2,7 @@
 ## Overview
 
 
-This tutorial is a part of [Azure Container Service and Docker Swam Tutorials](~/README.md)
+This tutorial is a part of [Azure Container Service and Docker Swam Tutorials](README.md)
 
 It is a compilation of Microsoft documentation. I just adding some tips to help you to deploy your first Azure Container Service. In this tutorial, you will be:
 
