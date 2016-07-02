@@ -1,6 +1,0 @@
-Connection Name: Osiatis CIS - Formation Azure(SPN)
-Subscription Id: 868c75eb-edc6-488f-803f-ccedd3254e18
-Subscription Name: Osiatis CIS - Formation Azure
-Service Principal Id: a6338254-627a-49da-a672-b346cdd07777
-Service Principal key: <Password that you typed in>
-Tenant Id: 29569269-12d2-4921-9962-e9bdb7626f28
