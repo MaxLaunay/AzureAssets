@@ -14,13 +14,13 @@ Tutorials are using linux Because ACS use linux: it is more simple to use always
 Another goal is that the Sofware Factory deploy applications in ACS
 
 ## List of Tutorials
-* Tutorial 1: [Deploy an Azure Container Service (ACS) with Docker SWARM](~/TUTO_1.md)
-* Tutorial 2: [Setup a sonarqube instance](~/TUTO_2.md)
+* Tutorial 1: [Deploy an Azure Container Service (ACS) with Docker SWARM](TUTO_1.md)
+* Tutorial 2: [Setup a sonarqube instance](TUTO_2.md)
 
 ## Additional links
 * https://engineering.riotgames.com/news/jenkins-docker-proxies-and-compose
 
 ## Other stuff
-* [Powershell script to create a ACS cluster - Docker Swarm with ARM](~/PSScripts/)
-* [Powershell script to create a ACS cluster - DCOS with ARM](~/PSScripts/DCOSAzureContainerServiceViaARM.ps1)
-* [Powershell script to create a ACS cluster with cmdlets](~/PSScripts/SWARMAzureContainerServiceViaARM.ps1)
+* [Powershell script to create a ACS cluster - Docker Swarm with ARM](PSScripts/)
+* [Powershell script to create a ACS cluster - DCOS with ARM](PSScripts/DCOSAzureContainerServiceViaARM.ps1)
+* [Powershell script to create a ACS cluster with cmdlets](PSScripts/SWARMAzureContainerServiceViaARM.ps1)
