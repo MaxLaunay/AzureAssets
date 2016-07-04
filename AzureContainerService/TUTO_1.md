@@ -32,6 +32,15 @@ To install nodejs and npm, use this following command:
 ### Install Docker
 Documentation could be find [here](https://docs.docker.com/engine/installation/linux/ubuntulinux/)
 
+Open the /etc/apt/sources.list.d/docker.list file in your favorite editor. If the file doesn’t exist, create it.
+
+Remove any existing entries.
+
+Add an entry for your Ubuntu operating system.
+
+    deb https://apt.dockerproject.org/repo ubuntu-xenial main
+Save and close the /etc/apt/sources.list.d/docker.list file.
+
 install the linux-image-extra package for your kernel version
 
     sudo apt-get update
