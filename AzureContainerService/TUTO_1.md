@@ -94,7 +94,7 @@ Next, we can used an existing template provide by Microsoft (This template could
     templateURI='https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-acs-dcos/azuredeploy.json'
 Get the parameters File required for the deployment
 
-    wget https://github.com/Azure/azure-quickstart-templates/blob/master/101-acs-swarm/azuredeploy.parameters.json
+    wget https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-acs-swarm/azuredeploy.parameters.json
 After, get your own public key and change the parameter sshRSAPublicKey in your parameters file with your own ssh public key.. It could be found here : `cat ~/.ssh/id_rsa.pub`
 
     "sshRSAPublicKey": {
