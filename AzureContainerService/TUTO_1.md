@@ -32,6 +32,15 @@ To install nodejs and npm, use this following command:
 ### Install Docker
 Documentation could be find [here](https://docs.docker.com/engine/installation/linux/ubuntulinux/)
 
+Open the /etc/apt/sources.list.d/docker.list file in your favorite editor. If the file doesn’t exist, create it.
+
+Remove any existing entries.
+
+Add an entry for your Ubuntu operating system.
+
+    deb https://apt.dockerproject.org/repo ubuntu-xenial main
+Save and close the /etc/apt/sources.list.d/docker.list file.
+
 install the linux-image-extra package for your kernel version
 
     sudo apt-get update
@@ -85,7 +94,7 @@ Next, we can used an existing template provide by Microsoft (This template could
     templateURI='https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-acs-dcos/azuredeploy.json'
 Get the parameters File required for the deployment
 
-    wget https://github.com/Azure/azure-quickstart-templates/blob/master/101-acs-swarm/azuredeploy.parameters.json
+    wget https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-acs-swarm/azuredeploy.parameters.json
 After, get your own public key and change the parameter sshRSAPublicKey in your parameters file with your own ssh public key.. It could be found here : `cat ~/.ssh/id_rsa.pub`
 
     "sshRSAPublicKey": {
