@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+
+  jenkins:
+    image: mlaunay/jenkins-azure
+    ports:
+      - "8080:9000"
+      - "50000:50000"
+    networks:
+      - jenkinsnet
+    volumes:
+      - /dockerVolume:/var/jenkins_home mlaunay/jenkins-azure
+      
+networks:
+  jenkinsnet:
+    driver: bridge
